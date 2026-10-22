@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d19">
+  <title>Neon Well / 3D</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {"imports":{"three":"./lib/three.module.js"}}
+  </script>
+</head>
+<body>
+  <div class="app">
+    <header><a class="brand" href="./">N<span>▱</span></a><div><h1>NEON WELL <em>/ 3D</em></h1><p>VOLUMETRIC BLOCK PUZZLE</p></div><span class="engine">THREE.JS <i></i> LIVE</span></header>
+    <main class="layout">
+      <aside class="left-rail">
+        <section class="panel intro"><span class="eyebrow">THE CHAMBER</span><h2>Eine Dimension<br>weiter.</h2><p>Fülle eine ganze Ebene aus 5 × 5 Würfeln. Jeder Stein zählt. In jeder Richtung.</p><div class="dimensions"><b>5 <small>×</small> 5 <small>×</small> 12</b><span>BREITE · TIEFE · HÖHE</span></div></section>
+        <section class="panel"><span class="eyebrow">RESERVE <kbd>C</kbd></span><div id="hold-preview" class="preview" aria-label="Gespeicherter Stein"></div><p id="hold-label" class="muted">Noch kein Stein gespeichert</p></section>
+        <section class="panel guide"><span class="eyebrow">SO SPIELST DU</span><p><b>01</b> Bewege dich in zwei Richtungen.</p><p><b>02</b> Drehe um alle drei Achsen.</p><p><b>03</b> Räume vollständige Ebenen ab.</p><div class="legend"><i></i> Der Ghost zeigt die Landung.</div></section>
+      </aside>
+      <section class="stage-panel" aria-label="Dreidimensionales Spielfeld">
+        <div class="stage-heading"><span><i></i> GRAVITY CHAMBER</span><span id="state-label">BEREIT</span></div>
+        <div id="viewport">
+          <div id="attract-banner" hidden><span>ATTRACT MODE · LAUTLOSE DEMO</span><strong>Eine Dimension zum Entdecken.</strong><small>Beliebige Eingabe zurück zum Startmenü</small></div>
+          <div id="overlay"><span class="eyebrow" id="overlay-kicker">DAS NÄCHSTE LEVEL</span><h2 id="overlay-title">Denke in<br><em>drei Dimensionen.</em></h2><p id="overlay-description">Vier Würfel. Drei Achsen. Unendlich viele Möglichkeiten.</p><button id="play" class="primary">Spiel starten <span>↗</span></button><small id="overlay-hint">ENTER ZUM STARTEN · DEMO NACH 15 SEK.</small></div>
+          <div id="toast" role="status"></div>
+          <div class="axis-key"><span class="axis-x">X</span> BREITE <span class="axis-z">Z</span> TIEFE <span class="axis-y">Y</span> HÖHE</div>
+          <div class="camera-hint">Ziehen: Kamera drehen · Scrollen: Zoom</div>
+          <button id="camera-reset" title="Kamera zurücksetzen" aria-label="Kamera zurücksetzen">⟲</button>
+        </div>
+        <div class="stage-footer"><span><i></i> ECHTES 3D · 25 ZELLEN PRO EBENE</span><span id="height-label">HÖHE 0 / 12</span></div>
+      </section>
+      <aside class="right-rail">
+        <section class="panel score-panel"><span class="eyebrow">DEIN SCORE</span><strong id="score">000000</strong><div class="stats"><div><span>LEVEL</span><b id="level">01</b></div><div><span>EBENEN</span><b id="layers">00</b></div></div><div class="progress"><i id="level-progress"></i></div><small id="level-hint">10 Ebenen bis Level 2</small></section>
+        <section class="panel next-panel"><span class="eyebrow">ALS NÄCHSTES</span><div id="next-preview" class="preview"></div><span id="next-label" class="piece-label"></span><div id="queue-preview"></div></section>
+        <section class="panel top-panel"><span class="eyebrow">DRAUFSICHT <span id="ghost-height"></span></span><div id="top-map" aria-label="Draufsicht auf das Spielfeld"></div><p class="muted">Ghost + belegte Felder</p></section>
+        <div class="utility"><button id="pause">Pause <kbd>P</kbd></button><button id="music" aria-pressed="true">♫ Musik an <kbd>M</kbd></button><button id="ai-toggle" aria-pressed="false">KI: Aus <kbd>K</kbd></button></div>
+      </aside>
+    </main>
+    <section class="controls">
+      <div class="control-group"><span>BEWEGEN</span><div><button data-action="left" aria-label="Negative X-Richtung">A ←</button><button data-action="back" aria-label="Negative Z-Richtung">W ↑</button><button data-action="front" aria-label="Positive Z-Richtung">S ↓</button><button data-action="right" aria-label="Positive X-Richtung">D →</button></div></div>
+      <div class="control-group"><span>DREHEN <small>SHIFT = RÜCKWÄRTS</small></span><div><button data-action="rotate-x">X <kbd>Q</kbd></button><button data-action="rotate-y">Y <kbd>E</kbd></button><button data-action="rotate-z">Z <kbd>R</kbd></button></div></div>
+      <div class="control-group"><span>ABSETZEN & RESERVE</span><div><button data-action="soft">Soft <kbd>F</kbd></button><button data-action="drop" class="drop-button">Drop <kbd>SPACE</kbd></button><button data-action="hold">Hold <kbd>C</kbd></button></div></div>
+    </section>
+    <p id="error" role="alert" hidden></p>
+    <footer><span>NEON WELL / 3D</span><span>Keine Eile. Nur Schwerkraft.</span><button id="restart">Neu starten ↗</button></footer>
+  </div>
+  <script src="engine.js"></script>
+  <script src="audio.js"></script>
+  <script type="module" src="game.js"></script>
+</body>
+</html>

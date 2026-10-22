@@ -1,0 +1,17 @@
+{
+  "name": "neon-well",
+  "version": "1.0.0",
+  "description": "Räumliches Browser-Tetris mit Three.js, Musik und Partikeleffekten",
+  "main": "game.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "three": "^0.180.0"
+  }
+}
